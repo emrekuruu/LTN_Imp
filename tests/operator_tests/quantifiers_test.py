@@ -4,6 +4,8 @@ from ltn_imp.fuzzy_operators.quantifiers import ForallQuantifier, ExistsQuantifi
 
 class TestQuantifiers(unittest.TestCase):
 
+    # FIXME: tests with bare float numbers are very fragile, use a tolerance
+
     def _test_quantifier(self, quantifier, truth_values, expected, dim=0):
         result = quantifier(truth_values, dim=dim)
         self.assertTrue(torch.allclose(result, expected, atol=0.1), f"{result} not close to {expected}")

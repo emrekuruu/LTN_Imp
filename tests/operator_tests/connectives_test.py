@@ -4,6 +4,8 @@ from ltn_imp.fuzzy_operators.connectives import AndConnective, OrConnective, Not
 
 class TestConnectives(unittest.TestCase):
 
+    # FIXME: tests with bare float numbers are very fragile, use a tolerance
+
     def _test_connective(self, connective, a, b=None, expected=None):
         if b is not None:
             result = connective(a, b)

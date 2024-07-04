@@ -4,6 +4,8 @@ from ltn_imp.fuzzy_operators.aggregators import AggregMin, AggregPMean, AggregPM
 
 class TestSatAgg(unittest.TestCase):
 
+    # FIXME: tests with bare float numbers are very fragile, use a tolerance
+
     def _test_sat_agg(self, sat_agg_op, expected, formulas):
         result = sat_agg_op(*formulas)
         self.assertTrue(torch.allclose(result, expected, atol=0.1), f"{result} not close to {expected}")

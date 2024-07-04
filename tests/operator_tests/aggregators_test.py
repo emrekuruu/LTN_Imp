@@ -4,6 +4,8 @@ from ltn_imp.fuzzy_operators.aggregators import AggregMin, AggregPMean, AggregPM
 
 class TestAggregators(unittest.TestCase):
 
+    # FIXME: tests with bare float numbers are very fragile, use a tolerance
+
     def _test_aggregator(self, agg_op,  expected, **kwargs):
         xs = torch.tensor([[0.5, 0.7, 0.3], [0.2, 0.9, 0.4]])
         result = agg_op(xs, **kwargs)

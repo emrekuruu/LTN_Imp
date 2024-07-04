@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import torch 
+import torch
 
 # Base class for all connectives
 class Connective(ABC):
@@ -26,6 +26,8 @@ class UnaryConnective(Connective):
     def forward(self, a):
         return self.implementation(a)
 
+# FIXME: the "implementations" dictionary is a trick to escape good OOP. let's rething that asap
+
 class AndConnective(BinaryConnective):
     def __init__(self, implementation_name = "min", stable=True):
         implementations = {
@@ -36,7 +38,7 @@ class AndConnective(BinaryConnective):
 
         if implementation_name not in implementations:
             raise ValueError(f"Unknown implementation: {implementation_name}")
-        
+
         super().__init__(implementations[implementation_name])
 
     def and_min(self, a, b):
@@ -88,7 +90,7 @@ class ImpliesConnective(BinaryConnective):
 
         if implementation_name not in implementations:
             raise ValueError(f"Unknown implementation: {implementation_name}")
-        
+
         super().__init__(implementations[implementation_name])
 
     def implies_kleene_dienes(self, a, b):
@@ -123,7 +125,7 @@ class IffConnective(BinaryConnective):
 
         if implementation_name not in implementations:
             raise ValueError(f"Unknown implementation: {implementation_name}")
-        
+
         super().__init__(implementations[implementation_name])
 
     def iff_default(self, a, b):
@@ -138,7 +140,7 @@ class NotConnective(UnaryConnective):
 
         if implementation_name not in implementations:
             raise ValueError(f"Unknown implementation: {implementation_name}")
-        
+
         super().__init__(implementations[implementation_name])
 
     def not_standard(self, a):
