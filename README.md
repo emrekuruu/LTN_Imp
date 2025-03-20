@@ -9,9 +9,17 @@ This implementation has been used in the research paper:
 > **Neuro-symbolic AI for Supporting Chronic Disease Diagnosis and Monitoring**\
 > *Matteo Magnini, Giovanni Ciatto, Ahmet Emre Kuru, Christel Sirocchi, and Sara Montagna*
 
-For full reproducibility of the results in this paper, please refer to the commit:
+For full reproducibility of the results reported in the paper, please refer to the commit:
 
 > [Commit ](https://github.com/emrekuruu/LTN_Imp/tree/d363aff892f417d770b86253aa8011c4754e8987)[`d363aff892f417d770b86253aa8011c4754e8987`](https://github.com/emrekuruu/LTN_Imp/tree/d363aff892f417d770b86253aa8011c4754e8987)
+
+Here, on the **main branch**, you can find the maintained and refactored codebase.
+Experiments on the Pima Indians Diabetes dataset are provided in the [`examples/medical/diabetes/demo.ipynb`](https://github.com/emrekuruu/LTN_Imp/tree/main/examples/medical/diabetes/demo.ipynb) notebook.
+
+### Results summary of model performance against different data perturbations
+![image](examples/medical/diabetes/robustness_metrics.png)
+                                 
+Each dot represents the average performance of the model with 30 seeds on the same experiment configuration.
 
 ## Features
 

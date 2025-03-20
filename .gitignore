@@ -10,4 +10,10 @@ htmlcov/
 .mypy_cache
 dist/
 *datasets/
+!examples/medical/diabetes/datasets
+!examples/medical/diabetes/datasets/__init__.py
+!examples/medical/diabetes/datasets/pima_indians_imputed.csv
+examples/medical/diabetes/datasets/test.csv
+examples/medical/diabetes/datasets/train.csv
+examples/medical/diabetes/datasets/val.csv
 *models/
