@@ -6,7 +6,7 @@ packages = [
     { include = "ltn_imp" },
 ]
 
-version = "2.29.0-dev5"
+version = "2.29.0-dev7"
 description = "A parser for FOL that utilizes NLTK Logic Module to parse and fuzzify FOL rules."
 authors = ["Emre Kuru <emre.kuru@ozu.edu.tr>"]
 license = "Apache 2.0"
