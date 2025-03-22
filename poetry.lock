@@ -3932,13 +3932,13 @@ tests = ["coverage", "pytest"]
 
 [[package]]
 name = "torchviz"
-version = "0.0.2"
+version = "0.0.3"
 description = "A small package to create visualizations of PyTorch execution graphs"
 optional = false
 python-versions = "*"
 files = [
-    {file = "torchviz-0.0.2-py3-none-any.whl", hash = "sha256:a15bc5692cf931d0df4edc76de8bf45353bcefb218d7c9f55382a2ba5ba426a0"},
-    {file = "torchviz-0.0.2.tar.gz", hash = "sha256:c790b4c993f783433604bf610cfa58bb0a031260be4ee5196a00c0884e768051"},
+    {file = "torchviz-0.0.3-py3-none-any.whl", hash = "sha256:5eab98d17cbe8a54727cfa6a527681cff613430fff8fc68f52302ca5fa26cdf1"},
+    {file = "torchviz-0.0.3.tar.gz", hash = "sha256:2e95f2fea7a31ec9549f2d6bbf446d75aeb6a9880fcf13e7dd843fdcdb4a3725"},
 ]
 
 [package.dependencies]
@@ -4239,4 +4239,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">= 3.11.0, < 4.0.0"
-content-hash = "a2abd6d55a5eb111c1332a0b745817fa24934d6d9f1785bd65b4cc45d2dc27a2"
+content-hash = "8a757da5ebaa749b784d76740818b06ccda27dbedab74f4771f09177f960d85e"
