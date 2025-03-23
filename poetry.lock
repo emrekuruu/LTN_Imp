@@ -342,13 +342,13 @@ files = [
 
 [[package]]
 name = "class-resolver"
-version = "0.5.0"
+version = "0.5.4"
 description = "Lookup and instantiate classes with style."
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "class_resolver-0.5.0-py3-none-any.whl", hash = "sha256:ad32067864068dd10d25bc869815cedb4befd04ac5b0e089f4c55295cb0975a2"},
-    {file = "class_resolver-0.5.0.tar.gz", hash = "sha256:5a36d9a96a29e08e89767e409825540c117014d2e23896ab43172b8de8b225bc"},
+    {file = "class_resolver-0.5.4-py3-none-any.whl", hash = "sha256:d0893e145a925a6b11d1c5f5b0ddbba35eb30788e68a800fb6cf91d348f47592"},
+    {file = "class_resolver-0.5.4.tar.gz", hash = "sha256:e09dc2ea33712f1c2dd151671cb6dc8e68777be80c1136c9748eacb84f83d638"},
 ]
 
 [package.extras]
@@ -358,6 +358,7 @@ numpy = ["numpy"]
 optuna = ["optuna"]
 ray = ["ray[tune] (<2.0.0)"]
 sklearn = ["scikit-learn"]
+tabulate = ["tabulate"]
 tests = ["coverage", "docdata", "pytest"]
 torch = ["torch"]
 torch-geometric = ["torch", "torch-geometric", "torch-sparse"]
@@ -2797,17 +2798,17 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pykeen"
-version = "1.10.2"
+version = "1.11.0"
 description = "A package for training and evaluating multimodal knowledge graph embeddings"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "pykeen-1.10.2-py3-none-any.whl", hash = "sha256:fea286efbeb5d7d0905cd8a2e809d065f59459ba82a68cbcb9bcd3eaa055cb9b"},
-    {file = "pykeen-1.10.2.tar.gz", hash = "sha256:6423f097e7c5785de6f0a88c84f79a77c7bc9667a4a83afdd0511a5a1f43a02c"},
+    {file = "pykeen-1.11.0-py3-none-any.whl", hash = "sha256:0796187068ee40dee8bb9e8e95d92bf6b51ae27bf9769f864b32e2d335684d3c"},
+    {file = "pykeen-1.11.0.tar.gz", hash = "sha256:0369fb7b1cde4ce0893d786c1240d8c5632b9362a01e7db52f0fb8fd08552fd3"},
 ]
 
 [package.dependencies]
-class-resolver = ">0.4.2"
+class-resolver = ">=0.5.1"
 click = "*"
 click-default-group = "*"
 dataclasses-json = "*"
@@ -2831,13 +2832,14 @@ typing-extensions = "*"
 
 [package.extras]
 biomedicine = ["bioregistry", "pyobo (>=0.8.7)"]
-docs = ["sphinx (<7)", "sphinx-autodoc-typehints (<=1.13.1)", "sphinx-automodapi", "sphinx-click", "sphinx-rtd-theme", "texext"]
+docs = ["graphviz", "sphinx (>=8.0)", "sphinx-automodapi", "sphinx-click", "sphinx-rtd-theme (>=3.0)", "texext"]
 lightning = ["pytorch-lightning (>=1.7.2)"]
 mlflow = ["mlflow (>=1.8.0)"]
 neptune = ["neptune-client"]
 ogb = ["ogb (>=1.3.4)"]
 opt-einsum = ["opt-einsum"]
 plotting = ["matplotlib", "seaborn"]
+pyg = ["torch-geometric"]
 templating = ["jinja2"]
 tensorboard = ["tensorboard"]
 tests = ["coverage", "pytest", "unittest-templates (>=0.0.5)"]
