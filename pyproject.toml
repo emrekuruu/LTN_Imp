@@ -28,7 +28,7 @@ ucimlrepo = "^0.0.7"
 pykeen = "^1.10.2"
 
 [tool.poetry.group.dev.dependencies]
-poetry = "^1.7.0"
+poetry = "^2.0.0"
 pytest = "^8.1.0"
 coverage = "^7.4.0"
 mypy = "^1.9.0"
