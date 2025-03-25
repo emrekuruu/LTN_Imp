@@ -64,10 +64,10 @@ class DynamicDataset(Dataset):
         
         return tuple(batch)
 class LoaderWrapper:
-    def __init__(self, config, features, device=None, scalers = None, type = None):
+    def __init__(self, config, features, device=None, scalers = None, type = None, shuffle = True):
         self.variables = config["instances"]
         self.targets = config["targets"]
-        self.loader = DataLoader(DynamicDataset(config, features, device=device, scalers=scalers, type = type), batch_size=config["batch_size"], shuffle=True)
+        self.loader = DataLoader(DynamicDataset(config, features, device=device, scalers=scalers, type = type, shuffle = shuffle), batch_size=config["batch_size"], shuffle=shuffle)
         self.scalers = self.loader.dataset.scalers
 
     def __iter__(self):

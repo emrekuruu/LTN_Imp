@@ -23,6 +23,7 @@ class KnowledgeBase:
         
         with open(yaml_file, "r") as file:
             config = yaml.safe_load(file)
+            
         self.config = config
         self.factory = NNFactory()
         self.scalers = {}
@@ -125,7 +126,7 @@ class KnowledgeBase:
         for dataset in self.config["train"]:
             dataset = self.config["train"][dataset]
             type = dataset["scaler"] if "scaler" in dataset else None
-            loader = LoaderWrapper(dataset, features, device=self.device, type = type)
+            loader = LoaderWrapper(dataset, features, device=self.device, type = type, shuffle = True)
             self.loaders.append(loader)
             self.scalers.update(loader.scalers)
 
@@ -137,7 +138,7 @@ class KnowledgeBase:
         features = self.config["features"]
         for dataset in self.config["validation"]:
             dataset = self.config["validation"][dataset]
-            loader = LoaderWrapper(dataset, features, device=self.device, scalers=self.scalers)
+            loader = LoaderWrapper(dataset, features, device=self.device, scalers=self.scalers, shuffle = True)
             self.val_loaders.append(loader)
 
     def set_test_loaders(self):
@@ -148,7 +149,7 @@ class KnowledgeBase:
         features = self.config["features"]
         for dataset in self.config["test"]:
             dataset = self.config["test"][dataset]
-            loader = LoaderWrapper(dataset, features, device=self.device, scalers=self.scalers)
+            loader = LoaderWrapper(dataset, features, device=self.device, scalers=self.scalers, shuffle = False)
             self.test_loaders.append(loader)
         
     def set_rule_to_data_loader_mapping(self):
