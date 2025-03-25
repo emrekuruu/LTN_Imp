@@ -81,18 +81,8 @@ def flip_labels_general(data: pd.DataFrame, label_column: str, flip_prob: float 
     return flipped_data
 
 def apply_data_dropping(data: pd.DataFrame, label_column: str, drop_prob: float = 0.1, seed: int = 42) -> pd.DataFrame:
-    np.random.seed(seed)
-    # Separate the data into positive and negative examples
-    positive_data = data[data[label_column] == 1]
-    negative_data = data[data[label_column] == 0]
-
-    # Apply dropping to each class separately
-    positive_mask = np.random.rand(len(positive_data)) >= drop_prob
-    negative_mask = np.random.rand(len(negative_data)) >= drop_prob
-
-    # Combine the remaining rows
-    dropped_data = pd.concat([positive_data[positive_mask], negative_data[negative_mask]]).reset_index(drop=True)
-    return dropped_data
+    tmp_data = data.copy()
+    return tmp_data.sample(frac=1-drop_prob, random_state=seed)
 
 def compute_kl_divergence(original_data: pd.DataFrame, perturbed_data: pd.DataFrame, feature_columns: list) -> float:
     """
