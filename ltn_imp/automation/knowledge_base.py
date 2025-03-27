@@ -4,7 +4,7 @@ from ltn_imp.automation.data_loaders import CombinedDataLoader, LoaderWrapper
 from ltn_imp.parsing.expressions import LessThanExpression, MoreThanExpression, EqualityExpression
 from ltn_imp.parsing.parser import LTNConverter
 from ltn_imp.parsing.ancillary_modules import ModuleFactory
-from ltn_imp.automation.network_factory import NNFactory
+from ltn_imp.automation.network_factory import NNFactory, LogicTensorNetwork
 import yaml
 
 sat_agg_op = SatAgg()
@@ -166,7 +166,15 @@ class KnowledgeBase:
                             rule_to_loader_mapping[rule] = [loader]
 
         self.rule_to_data_loader_mapping = rule_to_loader_mapping
-    
+
+    def set_predicate(self, predicate, model):
+        self.predicates[predicate].model = model
+        self.set_converter()
+        self.set_ancillary_rules()
+        self.set_rules()
+        self.set_rule_weights()
+        self.set_rule_to_data_loader_mapping()
+
     def loss(self, rule_outputs):
         input = []
         for weight, rule_output in zip(self.rule_weights, rule_outputs):
@@ -238,7 +246,7 @@ class KnowledgeBase:
     def optimize(self, num_epochs=10, log_steps=10, lr=0.001, early_stopping=False, patience=5, min_delta=0.0, weight_decay=0.0, verbose = True):
     
         try:
-            self.optimizer = torch.optim.Adam(self.parameters(), lr=lr, weight_decay=weight_decay)
+            self.optimizer = torch.optim.AdamW(self.parameters(), lr=lr, weight_decay=weight_decay)
         except Exception as e:
             print(e)
             print("No parameters to optimize")
@@ -248,6 +256,7 @@ class KnowledgeBase:
         combined_loader = CombinedDataLoader([loader for loader in all_loaders if loader is not None])
         best_val_loss = float('inf')
         epochs_no_improve = 0
+        best_model_state = None
 
         for epoch in range(num_epochs):
             for _ in range(len(combined_loader)):
@@ -276,12 +285,13 @@ class KnowledgeBase:
 
             if epoch % log_steps == 0 and verbose:
                 validation_loss = self.compute_validation_loss() if self.val_loaders else None
+                test_loss = self.compute_test_loss() if self.test_loaders else None
 
                 for rule, outcome in zip(self.rules, rule_outputs):
                     print(f"Rule: {rule}, Outcome: {outcome}")
                 
                 if validation_loss is not None:
-                    print(f"Epoch {epoch + 1}/{num_epochs}, Train Loss: {loss.item()}, Validation Loss: {validation_loss.item()}")
+                    print(f"Epoch {epoch + 1}/{num_epochs}, Train Loss: {loss.item()}, Validation Loss: {validation_loss.item()}, Test Loss: {test_loss.item()}")
                 else:
                     print(f"Epoch {epoch + 1}/{num_epochs}, Train Loss: {loss.item()}")
                 print()
@@ -292,11 +302,26 @@ class KnowledgeBase:
                 if validation_loss + min_delta < best_val_loss:
                     best_val_loss = validation_loss
                     epochs_no_improve = 0
+                    # Save the best model state
+                    best_model_state = {}
+                    for model in self.predicates.values():
+                        if hasattr(model, 'parameters'):
+                            for param in model.parameters():
+                                best_model_state[id(param)] = param.clone().detach()
                 else:
                     epochs_no_improve += 1
 
                 if epochs_no_improve >= patience:
                     for rule, outcome in zip(self.rules, rule_outputs):
                         print(f"Rule: {rule}, Outcome: {outcome}")
-                    print(f"Early stopping at Epoch {epoch + 1}/{num_epochs}, Train Loss: {loss.item()}, Validation Loss: {validation_loss.item()}")
+                    print(f"Early stopping at Epoch {epoch + 1}/{num_epochs}, Train Loss: {loss.item()}, Validation Loss: {validation_loss.item()}, Test Loss: {test_loss.item()}")
+                    
+                    # Restore the best model state
+                    if best_model_state is not None:
+                        for model in self.predicates.values():
+                            if hasattr(model, 'parameters'):
+                                for param in model.parameters():
+                                    if id(param) in best_model_state:
+                                        param.data.copy_(best_model_state[id(param)])
+                    
                     break
