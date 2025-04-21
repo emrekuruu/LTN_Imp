@@ -37,7 +37,7 @@ ipykernel = "^6.29.5"
 matplotlib = "^3.9.0"
 pandas = "^2.2.2"
 scikit-learn = "^1.5.0"
-poethepoet = "^0.33.0"
+poethepoet = "^0.34.0"
 
 [tool.poe.tasks]
 create-reg-dataset-dir = { shell = "mkdir -p examples/classification/datasets" }
