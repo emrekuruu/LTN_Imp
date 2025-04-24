@@ -378,24 +378,24 @@ files = [
 
 [[package]]
 name = "class-resolver"
-version = "0.5.4"
+version = "0.6.0"
 description = "Lookup and instantiate classes with style."
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "class_resolver-0.5.4-py3-none-any.whl", hash = "sha256:d0893e145a925a6b11d1c5f5b0ddbba35eb30788e68a800fb6cf91d348f47592"},
-    {file = "class_resolver-0.5.4.tar.gz", hash = "sha256:e09dc2ea33712f1c2dd151671cb6dc8e68777be80c1136c9748eacb84f83d638"},
+    {file = "class_resolver-0.6.0-py3-none-any.whl", hash = "sha256:cc629187a10bacff2e360939f8a4e8e7d209583dc8b318485ff91a0d24d5c9d0"},
+    {file = "class_resolver-0.6.0.tar.gz", hash = "sha256:8a3c20ab771925477f65cad8a49bb431e11543c82fbfadbf611c6769228a6cae"},
 ]
+
+[package.dependencies]
+typing-extensions = "*"
 
 [package.extras]
 click = ["click"]
-docs = ["sphinx (<8)", "sphinx-automodapi", "sphinx-rtd-theme"]
 numpy = ["numpy"]
 optuna = ["optuna"]
-ray = ["ray[tune] (<2.0.0)"]
 sklearn = ["scikit-learn"]
 tabulate = ["tabulate"]
-tests = ["coverage", "docdata", "pytest"]
 torch = ["torch"]
 torch-geometric = ["torch", "torch-geometric", "torch-sparse"]
 
@@ -816,20 +816,20 @@ files = [
 
 [[package]]
 name = "docdata"
-version = "0.0.4"
+version = "0.0.5"
 description = "Add structured information to the end of your python docstrings."
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "docdata-0.0.4-py3-none-any.whl", hash = "sha256:0ea775720cf1487fe83ea554af46183f61fd713175cb8c53ae6000a2e9ea049f"},
-    {file = "docdata-0.0.4.tar.gz", hash = "sha256:270ace9349e2a71c2bd38c83fd9437cd4cbd1c4fb765016138976f0898c4f457"},
+    {file = "docdata-0.0.5-py3-none-any.whl", hash = "sha256:7e54713b4fe8d87b6483cafa83a6f119344a4f3163799de08b8cb97436a215be"},
+    {file = "docdata-0.0.5.tar.gz", hash = "sha256:ff3b963ab3f8b47476891fa01796828f8b16b10d6605e731690c5e1b5d3e0683"},
 ]
 
 [package.dependencies]
 pyyaml = "*"
 
 [package.extras]
-docs = ["sphinx (<8)", "sphinx-automodapi", "sphinx-rtd-theme"]
+docs = ["sphinx (<8)", "sphinx-rtd-theme", "sphinx_automodapi"]
 tests = ["coverage", "pytest"]
 
 [[package]]
@@ -2983,23 +2983,23 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pykeen"
-version = "1.11.0"
+version = "1.11.1"
 description = "A package for training and evaluating multimodal knowledge graph embeddings"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 files = [
-    {file = "pykeen-1.11.0-py3-none-any.whl", hash = "sha256:0796187068ee40dee8bb9e8e95d92bf6b51ae27bf9769f864b32e2d335684d3c"},
-    {file = "pykeen-1.11.0.tar.gz", hash = "sha256:0369fb7b1cde4ce0893d786c1240d8c5632b9362a01e7db52f0fb8fd08552fd3"},
+    {file = "pykeen-1.11.1-py3-none-any.whl", hash = "sha256:b6cc0ab012fc6ba4f37b58fb7081a409a5c1f04cbbb0e0e9c2256e911757d4ba"},
+    {file = "pykeen-1.11.1.tar.gz", hash = "sha256:702cb807c354a0d2fce0f0593db46e1fe15fba2a37e92bbb18cd1b9d0a85fe13"},
 ]
 
 [package.dependencies]
-class-resolver = ">=0.5.1"
+class_resolver = ">=0.6.0"
 click = "*"
-click-default-group = "*"
+click_default_group = "*"
 dataclasses-json = "*"
-docdata = "*"
-more-click = "*"
-more-itertools = "*"
+docdata = ">=0.0.5"
+more_click = "*"
+more_itertools = "*"
 numpy = "*"
 optuna = ">=2.0.0"
 pandas = ">=1.0.0"
@@ -3010,21 +3010,21 @@ scikit-learn = "*"
 scipy = ">=1.7.0"
 tabulate = "*"
 torch = ">=2.0"
-torch-max-mem = ">=0.1.1"
+torch_max_mem = ">=0.1.4"
 torch-ppr = ">=0.0.7"
 tqdm = "*"
-typing-extensions = "*"
+typing_extensions = "*"
 
 [package.extras]
 biomedicine = ["bioregistry", "pyobo (>=0.8.7)"]
-docs = ["graphviz", "sphinx (>=8.0)", "sphinx-automodapi", "sphinx-click", "sphinx-rtd-theme (>=3.0)", "texext"]
-lightning = ["pytorch-lightning (>=1.7.2)"]
+docs = ["graphviz", "sphinx (>=8.0)", "sphinx-click", "sphinx-rtd-theme (>=3.0)", "sphinx_automodapi", "texext"]
+lightning = ["pytorch_lightning (>=1.7.2)"]
 mlflow = ["mlflow (>=1.8.0)"]
 neptune = ["neptune-client"]
 ogb = ["ogb (>=1.3.4)"]
-opt-einsum = ["opt-einsum"]
+opt-einsum = ["opt_einsum"]
 plotting = ["matplotlib", "seaborn"]
-pyg = ["torch-geometric"]
+pyg = ["torch_geometric"]
 templating = ["jinja2"]
 tensorboard = ["tensorboard"]
 tests = ["coverage", "pytest", "unittest-templates (>=0.0.5)"]
@@ -4095,23 +4095,18 @@ optree = ["optree (>=0.13.0)"]
 
 [[package]]
 name = "torch-max-mem"
-version = "0.1.3"
+version = "0.1.4"
 description = "Maximize memory utilization with PyTorch."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 files = [
-    {file = "torch_max_mem-0.1.3-py3-none-any.whl", hash = "sha256:61cfdd352bd9d3710f43e912388c688c102ae725599eb4bfdb0a5889c396dbf5"},
-    {file = "torch_max_mem-0.1.3.tar.gz", hash = "sha256:ae03e1626327f7001130c943b9aa40134a02450b3019a4e6e87c61e9dc3ebef1"},
+    {file = "torch_max_mem-0.1.4-py3-none-any.whl", hash = "sha256:23f66b7bb5d3ffbd514d64a1379c6d60007718d85819a8b6697d55149167c0d0"},
+    {file = "torch_max_mem-0.1.4.tar.gz", hash = "sha256:3c0a062a7166d4f50e8eaf2ba33fc6f3c5c2351daec630508de3efe844562827"},
 ]
 
 [package.dependencies]
 torch = ">=2.0"
 typing-extensions = "*"
-
-[package.extras]
-docs = ["sphinx (<7)", "sphinx-autodoc-typehints", "sphinx-automodapi", "sphinx-click", "sphinx-rtd-theme"]
-formatting = ["black", "isort"]
-tests = ["coverage", "numpy", "pytest"]
 
 [[package]]
 name = "torch-ppr"
