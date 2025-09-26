@@ -4057,13 +4057,13 @@ widechars = ["wcwidth"]
 
 [[package]]
 name = "tatsu"
-version = "5.13.1"
+version = "5.13.2"
 description = "TatSu takes a grammar in a variation of EBNF as input, and outputs a memoizing PEG/Packrat parser in Python."
 optional = false
 python-versions = ">=3.10"
 files = [
-    {file = "TatSu-5.13.1-py3-none-any.whl", hash = "sha256:941e12df8798f444957600346c52a5ff3455f485de5b4570a3a71a00ed896a14"},
-    {file = "tatsu-5.13.1.tar.gz", hash = "sha256:df8c216eecd09af9b5b308624f1bfda1e4b5af3d3df1bdc4f331a1e8ea6bc012"},
+    {file = "tatsu-5.13.2-py3-none-any.whl", hash = "sha256:482c6117e92e54fa770664b758f13b1729a01d5c94d7ccbc270d5ffa1dfe2d8a"},
+    {file = "tatsu-5.13.2.tar.gz", hash = "sha256:d55aa0bdde2ab5efec73d96f9ce41b8a4aef5cee58eb6e05d1951ad3e03151d9"},
 ]
 
 [package.extras]
