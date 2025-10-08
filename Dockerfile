@@ -1,5 +1,5 @@
 # Use an official PyTorch base image
-FROM python:3.13
+FROM python:3.14
 RUN pip install poetry
 RUN mkdir -p /app
 COPY pyproject.toml /app
